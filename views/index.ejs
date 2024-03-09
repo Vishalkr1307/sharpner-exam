@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <div class="container ">
+
+ 
+    <div class="main">
+        <h1>Timing Available for booking</h1>
+        <% if (tasks.length > 0) { %>
+            <div class="showData" >
+                <% tasks.forEach((task) => { %>
+                    <button class="showitem" onclick="handleButton('<%=task.id%>')">
+
+                        <h3><%= task.time %></h3>
+                        <p>Avialable:- <%= task.seat %></p>
+                    </button>
+                <% }); %>
+            </div>
+        <% } else { %>
+            <p>No tasks found.</p>
+        <% } %>
+    </div>
+    <div >
+        <form action="" class="showForm">
+            <div>
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name">
+
+            </div>
+            <div>
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email">
+
+            </div>
+            <div>
+                <button type="submit">book slot</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+    
+</body>
+</html>
+<script>
+    const formData=document.querySelector("form")
+   function handleButton(id){
+     formData.style.display="block"
+     formData.addEventListener("submit",(event)=>{
+        event.preventDefault()
+        let data={
+            id:id,
+            name:formData.elements[0].value,
+            email:formData.elements[1].value
+
+        }
+        console.log(data)
+     })
+   }
+</script>

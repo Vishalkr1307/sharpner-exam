@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/main.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Booking Slot</h1>
+      <form action="">
+        <div>
+          <label for="time">Time Available</label>
+          <input type="time" name="time" id="time" />
+        </div>
+        <div>
+          <label for="seat">No of Seat Available</label>
+          <input type="number" min="0" max="10" name="seat" No of Seatseat" No of Seat />
+        </div>
+        <div>
+            <button type="submit">ADD-Slot</button>
+        </div>
+      </form>
+    </main>
+  </body>
+</html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.7/axios.min.js" integrity="sha512-NQfB/bDaB8kaSXF8E77JjhHG5PM6XVRxvHzkZiwl3ddWCEPBa23T76MuWSwAJdMGJnmQqM0VeY9kFszsrBEFrQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+    const url='http://localhost:2345'
+    const formData=document.querySelector("form")
+    let p1=document.createElement("p")
+    formData.addEventListener("submit",handleForm)
+    function handleForm(event){
+        event.preventDefault();
+        const data={
+            time:formData.elements[0].value,
+            seat:formData.elements[1].value
+        }
+        axios.post(`${url}/bookingslot/addSlot`,data).then((res)=>{
+            p1.textContent=res.data
+            p1.style.color="green"
+            p1.style.fontWeight="bold"
+            p1.style.fontSize="30px"
+            formData.parentElement.insertBefore(p1,formData.previousElementSibling)
+        }).catch((err)=>{
+            p1.textContent="error adding in bookingslot"
+            p1.style.color="red"
+            p1.style.fontWeight="bold"
+            p1.style.fontSize="30px"
+
+            formData.parentElement.insertBefore(p1,formData.previousElementSibling)
+
+        });
+
+    }
+</script>

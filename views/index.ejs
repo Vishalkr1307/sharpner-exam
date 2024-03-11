@@ -13,18 +13,20 @@
     <div class="main">
         <h1>Timing Available for booking</h1>
         <% if (tasks.length > 0) { %>
-            <div class="showData" >
+            <div class="showData">
                 <% tasks.forEach((task) => { %>
-                    <button class="showitem" onclick="handleButton('<%=task.id%>')">
-
-                        <h3><%= task.time %></h3>
-                        <p>Avialable:- <%= task.seat %></p>
-                    </button>
+                    <% if (task.seat > 0) { %>
+                        <button class="showitem" onclick="handleButton('<%=task.id%>')">
+                            <h3><%= task.time %></h3>
+                            <p>Available: <%= task.seat %></p>
+                        </button>
+                    <% } %>
                 <% }); %>
             </div>
         <% } else { %>
             <p>No tasks found.</p>
         <% } %>
+        
     </div>
     <div >
         <form action="" class="showForm">
@@ -50,15 +52,25 @@
 <% if(User.length>0){
     %> <div class="showUser">
         <% User.forEach((item)=>{
-            %> <button>
-                <h1><%=item.name%> your meeting seclude</h1>
-                <li><a href="#">Go to google meet</a></li>
-                <button> <%
+            %> <div class="btn">
+                
+
+                    <h1><%=item.name%> </h1>
+                    <p>your meeting seclude</p>
+                    <li><a href="#">Go to google meet</a></li>
+                
+                
+                    <button onclick="handleDelete('<%=item.id%>')">
+                        cancel meet
+                    </button>
+                
+            </div> <%
         }) %>
 
     </div> <%
 
 }%>
+
     
 </body>
 </html>
@@ -83,8 +95,15 @@
             if(res.data){
                 alert(res.data)
                 formData.style.display="none"
+                window.location.reload()
             }
         }).catch((err)=>console.log(err))
      })
+   }
+   function handleDelete(id){
+     axios.delete(`/auth/delete/${id}`).then((res)=>{
+        alert(res.data)
+        window.location.reload()
+     }).catch((err)=>console.log(err))
    }
 </script>

@@ -23,7 +23,7 @@ input,button{
     /* background-color: rgb(141, 170, 170); */
 }
 button{
-    background-color: aqua;
+    background-color:teal;
 }
 button:hover{
     background-color: palevioletred;
@@ -53,8 +53,36 @@ button:hover{
 }
 .showUser{
     display: flex;
-    width: '100vw';
+    max-width:'100vw';
     justify-content: space-between;
     align-items: center;
+    
+}
+.btn{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 200px;
+    border: 2px solid black;
+    background-color: palevioletred;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    padding: 10px;
+    margin-left: 5px;
+    flex-wrap: wrap;
+
+    
+   
+
+}
+.btn h1{
+    font-size: 15px;
+}
+
+.btn button{
+    width: 90%;
+    /* background-color: palevioletred; */
+    margin-top: 10px;
     
 }

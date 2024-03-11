@@ -41,5 +41,22 @@ const getUser = async (req, res) => {
         return res.status(404).send("Bad request");
     }
 };
+const deleteUser=async(req,res)=>{
+    try{
 
-module.exports = { addUser, getUser };
+        const user=await User.findByPk(req.params.id)
+        const task=await Task.findByPk(user?.taskId)
+        await task.increment("seat",{by:1})
+        await user.destroy()
+
+        return res.status(200).send("meeting was cancel successfully");
+    }
+    catch(err){
+        return res.status(404).send("Bad request");
+    }
+    
+
+
+}
+
+module.exports = { addUser, getUser,deleteUser };

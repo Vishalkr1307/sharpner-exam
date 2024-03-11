@@ -1,23 +1,25 @@
 const {Sequelize,DataTypes}=require("sequelize")
 const db=require("..//config/db")
-const User=require("../module/user")
-const task=db.define("task",{
+const user=db.define("user",{
     id:{
         type:DataTypes.INTEGER,
         autoIncrement:true,
+        allowNull:false,
         primaryKey:true,
-
     },
-    time:{
-        type: DataTypes.TIME,
+    name:{
+        type:DataTypes.STRING,
+        allowNull:false,
+        
+    },
+    email:{
+        type:DataTypes.STRING,
         allowNull:false,
     },
-    seat:{
-        type: DataTypes.INTEGER,
+    taskId:{
+        type:DataTypes.STRING,
         allowNull:false,
     }
-    
 })
-// task.hasMany(User)
 
-module.exports =task
+module.exports=user

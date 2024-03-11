@@ -51,3 +51,10 @@ button:hover{
     margin-left: -30px;
     display: none;
 }
+.showUser{
+    display: flex;
+    width: '100vw';
+    justify-content: space-between;
+    align-items: center;
+    
+}

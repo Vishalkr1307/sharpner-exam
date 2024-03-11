@@ -44,23 +44,47 @@
         </form>
 
     </div>
+   
+    
 </div>
+<% if(User.length>0){
+    %> <div class="showUser">
+        <% User.forEach((item)=>{
+            %> <button>
+                <h1><%=item.name%> your meeting seclude</h1>
+                <li><a href="#">Go to google meet</a></li>
+                <button> <%
+        }) %>
+
+    </div> <%
+
+}%>
     
 </body>
 </html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.7/axios.min.js" integrity="sha512-NQfB/bDaB8kaSXF8E77JjhHG5PM6XVRxvHzkZiwl3ddWCEPBa23T76MuWSwAJdMGJnmQqM0VeY9kFszsrBEFrQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 <script>
+    const url='http//localhost:2345'
     const formData=document.querySelector("form")
    function handleButton(id){
      formData.style.display="block"
      formData.addEventListener("submit",(event)=>{
         event.preventDefault()
         let data={
-            id:id,
+            
             name:formData.elements[0].value,
-            email:formData.elements[1].value
+            email:formData.elements[1].value,
+            taskId:id
 
         }
-        console.log(data)
+        
+        axios.post(`/auth/addUser`,data).then((res)=>{
+            if(res.data){
+                alert(res.data)
+                formData.style.display="none"
+            }
+        }).catch((err)=>console.log(err))
      })
    }
 </script>
